@@ -1,0 +1,60 @@
+body{
+	    font-family: "Open Sans";
+		 font-size: 16px;
+}
+nav.navbar.navbar-inverse.navbar-fixed-top{
+    background: #58585A;
+} 
+.options-menu.navbar-nav>li>a{
+    font-size:20px;
+	color: white;
+	
+}
+.options-menu.navbar-nav>li:hover{
+	background-color:#868d92;
+}
+.options-menu.navbar-nav>.active>a{
+	background-color:#868d92;
+	background-image:none!important;
+}
+.ed-contendor{
+	padding: 40px 15px;
+    text-align: center;
+}
+.form-group {
+    border: 1px solid #CED5D7;
+    padding: 10px 10px 10px 10px;
+}
+span.ok {
+    border: 2px solid;
+    border-radius: 25px;
+    color: 	#00FF00;
+    padding: 4px 4px 4px 4px;
+    margin: 0px 0px 0px 5px;
+	display:none;
+	margin: -8px 0px 0px 5px;
+	float: left;
+}
+span.error {
+    border: 2px solid;
+    border-radius: 25px;
+    color: #FF0000;
+    padding: 4px 4px 4px 4px;
+    margin: -8px 0px 0px 5px;
+	display:none;
+	float: left;
+}
+button.btn.send{
+	width: 100%;	
+}
+.col-md-12 {
+    padding: 0;
+}
+label.form{
+    float: left;
+}
+input.propietarios {
+    margin-top: 10px;
+}
+
+

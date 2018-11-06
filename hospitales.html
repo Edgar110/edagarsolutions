@@ -1,0 +1,96 @@
+
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="keywords" content="edagar,ed">
+    <meta name="description" content="consulta hospitales en df, hospitales distrito federal, servicios méxico">
+	<meta name="author" content="Edgar Molina">
+	<meta content="http://edagarsolutions.com/img/hospitales_img.png" property="og:image"/>
+	<title>ed-edw solutions</title>    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="shortcut icon" href="img/favicon.png">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.10.custom.min.js"></script>
+ <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 19.3907337, lng: -99.1436126},
+          zoom: 11
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+ <body style="">  
+	<div class="header">
+		<div class="h"><a href="index.html"><IMG id="logo" SRC="img/logo.png"/></a>
+		<h1><span>Solutions and technology</span></h1></div>
+	<div class="extra1"></div>
+	</div> 
+
+	<div id="tabs">
+	<div class="title">Consulta Hospitales y Centros de Salud en México DF</div>
+	<div class="cont">
+	 <label>
+    <select id="del">
+        <option selected>Selecciona tu Delegacion</option>
+    </select>
+	</label>	
+	</div>
+	<div class="table-responsive">
+    <table class="table  table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Delegación</th>
+				<th>Mapa</th>
+                <th>Coordenadas</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div> 
+
+	<div class="mapa">
+		<div id="map-canvas"></div>
+	</div>
+	</div>
+	
+    	
+	
+	<div class="footer"><p style="float:left">Desarrollo y diseño by Edgar Molina<br/>edgar_ico@comunidad.unam.mx<br/>55-45-19-54-86</p>
+		<div style="float: right;margin-top: 6px;"><IMG id="logo" SRC="img/facebook.png"/>
+		<IMG id="logo" SRC="img/twitter.png"/>
+		<IMG id="logo" SRC="img/youtube.png"/>
+		</div>
+	</div>	
+	<!-- <p><a id="group4"  href="https://www.google.com.mx/" target="_blank" title="" style="display:none">dsdds</a></p> -->
+</body>
+
+<script type="text/javascript" src="js/edw.js"></script>
+<script type="text/javascript" src="js/jquery.colorbox.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59116602-1', 'auto');
+  ga('send', 'pageview');
+jQuery( document ).ready(function( $ ) {
+	hospitales.datos();
+	hospitales.leerdatos();
+	hospitales.muestra();
+});
+</script> 
+</html>

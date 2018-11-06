@@ -1,0 +1,82 @@
+#background {
+
+}
+.container_fluid .video_cont{
+	width:60%;
+	display:inline-block;
+	float:left;
+}
+.container_fluid .ticket_cont{
+	width:40%;
+	display:inline-block;	
+}
+@font-face {
+font-family: Minecraft;
+src: url(Minecraft.ttf);
+}
+@font-face {
+font-family: Minecraftia-Regular;
+src: url(Minecraftia-Regular.ttf);
+}
+.container_fluid .ticket_cont .title{
+	font-family:Minecraft;	
+}
+.container_fluid .ticket_cont .number_now{
+		
+}
+.container_fluid .ticket_cont .number{
+	font-family:Minecraftia-Regular;		
+}
+.turn_now {
+    text-align: center;
+	background-color: #e0e0d2;
+}
+p.title_now.title,.number_now.number {
+    font-size: 8em;
+    margin: 0;
+}
+span.number {
+    display: inherit;
+	color: #FF0000;
+}
+p.number_now.number {
+    height: 200px;
+	color: #FF0000;
+}
+p.caja_now.title {
+	height: 220px;
+    font-size: 5em;
+	color: #190707;
+    margin: 0;
+	color: #190707;
+}
+td {
+    text-align: center;
+	color:#5d8ec7;
+	background-color:#dbdedf;
+	font-family:Minecraftia-Regular;
+}
+th{
+ color:#fff;
+font-family:Minecraft;	 
+}
+th:nth-child(1){
+   background-color:#adbb58;
+}
+td:nth-child(1),th:nth-child(1){
+	width:30%;
+}
+td:nth-child(2),th:nth-child(2){
+	width:70%;
+}
+th:nth-child(2){
+   background-color:#6dafbc;
+}
+th:nth-child(3){
+   background-color:#94a1af;
+}
+tr, th {
+    height: 40px;
+    font-size: 27px;
+    font-weight: 100;
+}

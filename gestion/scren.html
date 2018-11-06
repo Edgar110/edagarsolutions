@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screen</title>
+  <link rel="stylesheet" type="text/css" href="recursos/style_e.css">
+  <script src="/gestion/js/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<div class="container_fluid">
+			<div id="background"></div>
+			<div  class="video_cont" style="" >
+			     <video id="mi-video" width="100%"  controls> 
+					<source src="" type="video/mp4">
+				</video> 
+<div class="table" >
+					<table style="width:100%" id="fila_turnos">
+					  <tr>
+						<th>TURNO</th>
+						<th>TRÁMITE</th> 
+						
+					  </tr>
+					  <tr>
+						<td>1</td>
+						<td>CONSTRUCCIONES Y OBRAS</td> 
+						
+					  </tr>
+					</table>
+					
+				</div>
+
+
+			</div>
+			<div class="ticket_cont">
+				<div class="turn_now">
+					<div class="table">
+					
+					
+				</div>
+					<p class="title_now title">Turno</p>
+					<p class="number_now number">---</p>
+					<p Class="caja_now title">CAJA <span class="number number_box">--</span></p> 
+				</div>
+				
+			</div>
+			
+	</div>
+	<audio id="audio" src="alert.mp3">
+	</audio>
+</body>
+<script>
+	var dataJson,dataJson2;
+	var countv = 0;
+	var video;
+	var time;
+	var cajaid;
+	new_video();
+	var alerta = document.getElementById("audio")
+	
+	function new_video(){
+		video = document.getElementById("mi-video");
+		countv += 1;
+		countv == 9 ? countv = 0 : countv;
+		video.src = 'video/video'+countv+'.mp4';
+		document.getElementById("mi-video").load();
+		setTimeout(leerparam, 1000)
+	}
+	function leerparam(){
+		time = Math.round(video.duration);
+		time *= 1000;
+		setTimeout(new_video, time);
+		video.play()
+	}
+	setInterval('turno.obten_cajas()',3000);
+	var cajas = [],turno_last = [],espera_id = [],espera_turno = [];
+	
+	var turno = {
+		obten_turnos_nuevos:function(){
+			$.get("motorgest.php",{
+			op:"leeturnosNW",
+			}, 
+			   function (datos) {	
+					var turnosbase = ""
+					turnosbase = eval(datos);
+					$.each(turnosbase, function( i, val ) {
+						if(espera_id.indexOf(val.id) == -1){
+							espera_id.push(val.id)
+							espera_turno.push(val.num_turno)
+						}
+					});	
+				})	
+				.done(function() {
+					setTimeout(turno.obten_turnos_atencion(),1000);
+				});	
+		},
+		obten_turnos_atencion:function(){
+			$.get("motorgest.php",{
+			op:"leeturnosAT",
+			}, 
+			   function (datos) {
+				 $("#fila_turnos").html("")
+				var html =""
+				html = "<tr><th>TURNO</th><th>TRÁMITE</th><th>VENTANILLA DE ATENCION</th></tr>"
+				 dataJson2 = "";
+				 dataJson2 = eval(datos);	
+					
+				$.each(dataJson2, function( i, val ) {
+						var haveturn = cajas.indexOf(val.id)
+						html += "<tr><td>"+val.num_turno+"</td><td>"+val.tramite+"</td><td>"+dataJson[haveturn].idcaja+"</td></tr>"
+				});
+				 $("#fila_turnos").html(html);
+			})
+				.done(function() {
+					setTimeout(turno.turno_actual(),1000);
+				});	
+		},
+		
+		
+		
+		
+		obten_cajas:function(){
+			$.get("motorgest.php",{
+			op:"leecaja",
+			
+			}, 
+			   function (caja) {
+			   dataJson = "";
+			   dataJson = eval(caja);	
+				 cajas = []
+				 $.each(dataJson, function( i, val ) {
+					cajas[i] = val.turno; 
+				 });
+			})
+			.done(function() {
+				 if(dataJson != "")cajaid = dataJson[0].idcaja;
+				 	setTimeout(turno.obten_turnos_nuevos(),1000); 
+			});
+			
+		},
+		turno_actual:function(){
+			$.each(espera_id, function( i, val ) {
+				var havecaja = cajas.indexOf(val) 
+				if(havecaja != -1){
+					alerta.play()
+					
+					$(".number_now").html(espera_turno[i]).fadeToggle(500);
+					$(".number_now").html(espera_turno[i]).fadeToggle(500);
+					
+					$(".number_box").html(dataJson[havecaja].idcaja).fadeToggle(500);
+					$(".number_box").html(dataJson[havecaja].idcaja).fadeToggle(500);
+					delete espera_turno[i];espera_turno.splice(i,i);
+					delete espera_id[i];espera_id.splice(i,i);
+				}
+				
+			});
+		
+				 		
+		}
+		
+	}
+</script>
+</html>

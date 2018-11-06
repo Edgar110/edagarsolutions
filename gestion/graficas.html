@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screen</title>
+  
+ 
+	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script src="/gestion/js/jquery-1.11.3.min.js"></script>
+ 
+</head>
+
+<body>
+	
+ <div id="piechart" style="width: 900px; height: 500px;"></div>
+	<div id="piechart2" style="width: 900px; height: 500px;"></div>
+</body>
+		<script>
+var cajas,i1,i2,i3,i4,i0;	
+var items = [
+       ['Texto', 'Tiempo de atención mas alto'] 
+     ]	
+ 
+var  graficas =	{
+	cajas: function(){
+		$.get("graficas.php",{
+			op:"lecajas"
+			}, 
+			   function (datos) {	
+					cajas = eval(datos);
+				})	
+			.done(function() {
+				setTimeout(graficas.obten_atenciones(),2000);
+		});	
+	
+	},
+	obten_atenciones: function(){
+		$.each(cajas, function( i, val ) {
+			$.get("graficas.php",{
+			op:"leeturnos",
+			cajaid:val.idcaja_catalog
+			}, 
+			   function (datos) {	
+					var atention = datos.length;
+					if(i == 0) i0 = atention
+					if(i == 1) i1 = atention
+					if(i == 2) i2 = atention
+					if(i == 3) i3 = atention
+					if(i == 3) i4 = atention
+					//items.push([val.ip,atention])
+				})	
+			.done(function() {
+				setTimeout(graficas.lanzagrafica(),2000);
+			});	
+		});	
+	
+	},
+	lanzagrafica: function(){
+		
+	//items.push(['texto5',10.20])
+google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['caja', 'Atenciones por día'],
+          ['Caja1',     i0],
+          ['Caja2',      i1],
+          ['Caja3',  i2],
+          ['Caja4', i3],
+          ['Caja5',    i4]
+        ]);
+
+        var options = {
+          title: 'Atenciones de caja por día'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+		 // Dibujar el gráfico
+     
+		
+      }
+	  
+	  
+	  google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart2);
+      function drawChart2() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['caja', 'Atenciones por día'],
+          ['Caja1',     i0],
+          ['Caja2',      i1],
+          ['Caja3',  i2],
+          ['Caja4', i3],
+          ['Caja5',    i4]
+        ]);
+
+        var options = {
+          title: 'Atenciones de caja por día'
+        };
+
+       new google.visualization.ColumnChart( 
+     //ColumnChart sería el tipo de gráfico a dibujar
+       document.getElementById('piechart')
+     ).draw(data, options);
+	} 
+	
+	
+}	
+}
+graficas.cajas()		
+ </script> 
+	
+</html>

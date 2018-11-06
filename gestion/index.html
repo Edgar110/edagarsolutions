@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestion de red</title>
+<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top head">
+      <div class="container">
+        <div class="navbar-header ">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand ed-title" href="#">Administrador de Red</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse options-menu">
+          <ul class="nav navbar-nav options-menu">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">Nuevo Registro</a></li>
+            <li><a href="#contact">Consultar</a></li>
+			<li><a href="#contact">Modificar</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	 <div class="container_fluid">
+
+      <div class="ed-contendor cont0" style="display:block">
+        <h1>Administrador de Red</h1>
+        <p class="lead"></p>
+		<p class="lead"></p>
+		<p class="lead"></p>
+		<p class="lead"></p>
+		<div class="container">
+  <h2>Resumen</h2>
+  <table class="table">
+    <thead>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>TOTAL DE REGISTROS:</td>
+		<td><img src="img/flechaverde.gif" style="width: 166px;" /></td>
+        <td><span id="total">200</span>-REGISTROS</td>
+      </tr>
+      <tr class="success">
+        <td>ULTIMO REGISTRO:</td>
+        <td><span id="ip_label"></span></td>
+        <td><span id="prop_label"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      </div>
+	  <div class="ed-contendor cont1" style="display:none">
+        <h1>Nuevo Registro</h1>
+        <p class="lead" style="display:none">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+		<div class="form-group">
+		  <label class="form" for="MAC">MAC ADRESS:</label><span class="ok">ok</span>
+		  <input type="text" class="form-control" id="inp_mac" placeholder="ENTER MAC ADRESS">
+		</div>
+		<div class="form-group">
+		  <label class="form" for="IP">IP ADRESS:</label><span class="ok">ok</span>
+		  <input type="text" class="form-control" id="inp_ip" placeholder="ENTER IP ADRESS">
+		</div>
+		<div class="form-group">
+		  <label class="form" for="Area">Area:</label><span class="ok">ok</span>
+		  <input type="text" class="form-control" id="inp_area" placeholder="ENTER AREA">
+		</div>
+		<div class="form-group">
+		  <div><label id="" class="form" for="Propietario">Propietario:</label><span class="ok">ok</span>
+		   <button id="add_propietario" type="button" class="btn btn-success">Add Propietario</button></div>
+		  <div id="container_prop">
+			<input type="text" class="form-control propietarios" id="inp_prop" placeholder="ENTER PROPIETARIO">
+		  </div>	
+		</div>
+		<div class="form-group">
+		  <label class="form" for="Ubicacion">Ubicación Fisica:</label><span class="ok">ok</span>
+		  <input type="text" class="form-control" id="inp_ubic" placeholder="ENTER UBICACION">
+		</div>
+		<div class="form-group">
+		  <label class="form" for="nodo">Numero de nodo:</label><span class="ok">ok</span>
+		  <input type="text" class="unready form-control" id="inp_nodo" placeholder="ENTER NO. NODO">
+		</div>
+		<div class="form-group">
+		  <label class="form" for="IDF">IDF:</label><span class="ok">ok</span>
+		  <select class="form-control" id="sel_idf">
+			<option>Seleccionar</option>
+			<option>Informatica</option>
+			<option>Obras</option>
+			<option>Comunicación</option>
+		  </select>
+		</div>
+		<div class="form-group" style="padding-bottom: 38px;">
+		  <label class="form" for="nodo">Niveles de Usuario:</label><span class="ok">ok</span><br/>
+		   <div class=".col-sm-6"> <label class="checkbox-inline">
+				<input name="st" type="checkbox" value="redes_sociales">redes sociales
+			</label>
+			<label class="checkbox-inline">
+				<input name="st" type="checkbox" value="Streaming">Streaming
+			</label>
+			<label class="checkbox-inline">
+				<input name="st" type="checkbox" value="Youtube">Youtube
+			</label>
+			</div>
+	  </div>
+	  <div class="col-md-12"><button id="guardar" onclick="formulario.enviarfinal()" type="button" class="btn btn-success send">Guardar</button></div>	
+    </div>
+	 <div class="ed-contendor cont2" style="display:none">
+        <h1>consulta registros</h1>
+       
+		<div class="container">
+  <h2>Resumen</h2>
+   <table class="table">
+    <thead>
+      <tr id="titles">
+        <th>id</th>
+        <th>Mac Adress</th>
+        <th>ip</th>
+		<th>Area</th>
+		<th>Propietario</th>
+		<th>Ubicacion</th>
+		<th>No Nodo</th>
+		<th>IDF</th>
+		<th>Bloqueos</th>
+		<th>Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success element">
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+		<td>john@example.com</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+      </div>
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/ed_functiones.js"></script>
+
+<script></script>
+</html>
